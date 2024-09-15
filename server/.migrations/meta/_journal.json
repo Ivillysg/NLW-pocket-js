@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1725964905093,
+      "tag": "0000_conscious_miracleman",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1725965163444,
+      "tag": "0001_perfect_alex_power",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1726423101470,
+      "tag": "0002_normal_warbound",
+      "breakpoints": true
+    }
+  ]
+}
