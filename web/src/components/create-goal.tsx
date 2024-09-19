@@ -16,7 +16,7 @@ import { Button } from './ui/button';
 import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { createGoal } from '../http/create-goal';
+import { createGoal } from '../services/create-goal';
 import { useQueryClient } from '@tanstack/react-query';
 
 const numberOfTimesPerWeek = [

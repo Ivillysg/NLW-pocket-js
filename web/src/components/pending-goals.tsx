@@ -1,9 +1,9 @@
 import { Plus, X } from 'lucide-react';
 import { OutlineButton } from './ui/outline-button';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { getPendingGoals } from '../http/get-pending-goals';
-import { createGoalCompletion } from '../http/create-goal-completion';
-import { removeGoal } from '../http/remove-goal';
+import { getPendingGoals } from '../services/get-pending-goals';
+import { createGoalCompletion } from '../services/create-goal-completion';
+import { removeGoal } from '../services/remove-goal';
 import { useState } from 'react';
 import { Skeleton } from './ui/skeleton';
 

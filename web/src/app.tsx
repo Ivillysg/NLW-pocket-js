@@ -1,17 +1,17 @@
-import { Dialog } from './components/ui/dialog';
-import { CreateGoal } from './components/create-goal';
-import { EmptyGoals } from './components/empty-goals';
-import { Summary } from './components/summary';
+import { Dialog } from "./components/ui/dialog";
+import { CreateGoal } from "./components/create-goal";
+import { EmptyGoals } from "./components/empty-goals";
+import { Summary } from "./components/summary";
 
-import logo from './assets/logo-in-orbit.svg';
+import logo from "./assets/logo-in-orbit.svg";
 
-import { useQuery } from '@tanstack/react-query';
-import { getSummary } from './http/get-summary';
-import { Spinner } from './components/ui/spinner';
+import { useQuery } from "@tanstack/react-query";
+import { getSummary } from "./services/get-summary";
+import { Spinner } from "./components/ui/spinner";
 
 export function App() {
   const { data, isLoading } = useQuery({
-    queryKey: ['summary'],
+    queryKey: ["summary"],
     queryFn: getSummary,
     staleTime: 1000 * 60, // 60 seconds
   });
