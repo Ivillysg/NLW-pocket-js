@@ -1,3 +1,5 @@
+import API from "../libs/axios";
+
 type GetPendingGoalsResponse = {
   id: string;
   title: string;
@@ -5,8 +7,16 @@ type GetPendingGoalsResponse = {
   completionCount: number;
 }[];
 export async function getPendingGoals(): Promise<GetPendingGoalsResponse> {
-  const response = await fetch('http://localhost:3333/pending-goals');
-  const data = await response.json();
+  try {
+    const response = await API.get<{ pendingGoals: GetPendingGoalsResponse }>(
+      "/pending-goals"
+    );
+    if (!response) {
+      throw new Error();
+    }
 
-  return data.pendingGoals;
+    return response.data.pendingGoals;
+  } catch (error) {
+    throw new Error("Ocorreu um erro...");
+  }
 }

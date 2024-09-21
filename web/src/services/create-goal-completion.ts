@@ -1,14 +1,10 @@
-export async function createGoalCompletion(goalId: string): Promise<void> {
-  const response = await fetch('http://localhost:3333/completions', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      goalId,
-    }),
-  });
-  const data = await response.json();
+import API from "../libs/axios";
 
-  return data.pendingGoals;
+export async function createGoalCompletion(goalId: string): Promise<void> {
+  try {
+    const response = await API.post("/completions", { goalId });
+    return response.data;
+  } catch (error) {
+    throw new Error("Ocorreu um erro...");
+  }
 }
