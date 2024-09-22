@@ -1,30 +1,38 @@
 import dayjs from 'dayjs';
 import { client, db } from '.';
-import { goalCompletions, goals } from './schema';
+import { goalCompletions, goals, users } from './schema';
 
 async function seed() {
-  await db.delete(goalCompletions);
+  await db.delete(users);
   await db.delete(goals);
 
-  const result = await db
+  const user = await db
+    .insert(users)
+    .values({
+      name: 'root',
+      email: 'root',
+      githubId: '123',
+    })
+    .returning();
+
+  const goalsResult = await db
     .insert(goals)
     .values([
-      { title: 'Acordar cedo', desiredWeeklyFrequency: 5 },
-      { title: 'Me exercitar', desiredWeeklyFrequency: 2 },
-      { title: 'Meditar', desiredWeeklyFrequency: 1 },
+      { title: 'Acordar cedo', desiredWeeklyFrequency: 5, userId: user[0].id },
+      { title: 'Me exercitar', desiredWeeklyFrequency: 2, userId: user[0].id },
+      { title: 'Meditar', desiredWeeklyFrequency: 1, userId: user[0].id },
     ])
     .returning();
 
   const startOfWeek = dayjs().startOf('week');
-  console.log(startOfWeek.subtract(1, 'day').toDate());
 
   await db.insert(goalCompletions).values([
     {
-      goalId: result[0].id,
+      goalId: goalsResult[0].id,
       createdAt: startOfWeek.toDate(),
     },
     {
-      goalId: result[1].id,
+      goalId: goalsResult[1].id,
       createdAt: startOfWeek.add(1, 'day').toDate(),
     },
   ]);

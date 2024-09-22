@@ -1,6 +1,4 @@
 import fastify from 'fastify';
-import { createGoal } from '../use-cases/create-goal';
-import z from 'zod';
 import {
   serializerCompiler,
   validatorCompiler,
@@ -13,10 +11,19 @@ import { getWeekSummaryRoute } from './routes/get-week-summary';
 import fastifyCors from '@fastify/cors';
 import { undoGoalCompletionRoute } from './routes/undo-goal-completion';
 import { removeGoalRoute } from './routes/remove-goal';
+import { authenticateWithGithub } from './routes/auth/authenticate-with-github';
+import fastifyJwt from '@fastify/jwt';
+
+import { env } from '../env';
+import { getUserProfileRoute } from './routes/user/get-profile';
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 app.register(fastifyCors, {
   origin: '*',
+});
+
+app.register(fastifyJwt, {
+  secret:env.JWT_SECRET,
 });
 
 app.setValidatorCompiler(validatorCompiler);
@@ -28,6 +35,8 @@ app.register(getWeekPendingGoalsRoute);
 app.register(getWeekSummaryRoute);
 app.register(undoGoalCompletionRoute);
 app.register(removeGoalRoute);
+app.register(authenticateWithGithub);
+app.register(getUserProfileRoute)
 
 app
   .listen({ port: 3333 })

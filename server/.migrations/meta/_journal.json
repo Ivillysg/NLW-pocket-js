@@ -5,22 +5,15 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1725964905093,
-      "tag": "0000_conscious_miracleman",
+      "when": 1727013456846,
+      "tag": "0000_cooing_shiver_man",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "7",
-      "when": 1725965163444,
-      "tag": "0001_perfect_alex_power",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1726423101470,
-      "tag": "0002_normal_warbound",
+      "when": 1727013669214,
+      "tag": "0001_calm_landau",
       "breakpoints": true
     }
   ]

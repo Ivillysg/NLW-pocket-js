@@ -16,7 +16,7 @@ import { undoGoalCompletion } from "../services/undo-goal-completion";
 
 dayjs.locale(ptBR);
 
-export function Summary() {
+export function SummaryGoals() {
   const queryClient = useQueryClient();
 
   const { data } = useQuery({
@@ -71,7 +71,6 @@ export function Summary() {
           <LogOut className="size-4" />
         </button>
       </div>
-      {JSON.stringify(import.meta.env)}
 
       <Separator />
 
